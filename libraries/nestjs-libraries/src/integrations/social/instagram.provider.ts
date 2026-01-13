@@ -472,7 +472,7 @@ export class InstagramProvider
                 ? `video_url=${m.path}&media_type=STORIES`
                 : `video_url=${m.path}&media_type=REELS&thumb_offset=${
                     m?.thumbnailTimestamp || 0
-                  }`
+                  }&share_to_feed=false`
               : isStory
               ? `video_url=${m.path}&media_type=STORIES`
               : `video_url=${m.path}&media_type=VIDEO&thumb_offset=${
