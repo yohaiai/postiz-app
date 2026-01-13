@@ -6,6 +6,7 @@ import {
   IsString,
   ValidateNested,
   IsOptional,
+  IsBoolean,
 } from 'class-validator';
 
 export class Collaborators {
@@ -23,4 +24,8 @@ export class InstagramDto {
   @IsArray()
   @IsOptional()
   collaborators: Collaborators[];
+
+  @IsBoolean()
+  @IsOptional()
+  share_to_feed?: boolean;
 }
