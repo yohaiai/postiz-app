@@ -457,6 +457,9 @@ export class InstagramProvider
     const [firstPost] = postDetails;
     console.log('in progress', id);
     const isStory = firstPost.settings.post_type === 'story';
+    // Default share_to_feed to true if not specified
+    const shareToFeed = firstPost.settings?.share_to_feed ?? true;
+    const shareToFeedUrlParam = !shareToFeed ? '&share_to_feed=false' : '';
     const medias = await Promise.all(
       firstPost?.media?.map(async (m) => {
         const caption =
@@ -472,7 +475,7 @@ export class InstagramProvider
                 ? `video_url=${m.path}&media_type=STORIES`
                 : `video_url=${m.path}&media_type=REELS&thumb_offset=${
                     m?.thumbnailTimestamp || 0
-                  }`
+                  }${shareToFeedUrlParam}`
               : isStory
               ? `video_url=${m.path}&media_type=STORIES`
               : `video_url=${m.path}&media_type=VIDEO&thumb_offset=${
