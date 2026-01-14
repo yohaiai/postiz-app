@@ -28,7 +28,7 @@ jobs:
           password: ${{ github.token }}
 
           # Generate a tag based on the PR number.
-          run: echo "IMAGE_TAG=ghcr.io/yohaiai/postiz-app-pr:${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          run: echo "IMAGE_TAG=ghcr.io/mascotai/postiz-app-pr:${{ github.event.pull_request.number }}" >> $GITHUB_ENV
 
       - name: Build and Push Docker image
         run: docker build -f Dockerfile.dev -t $IMAGE_TAG .

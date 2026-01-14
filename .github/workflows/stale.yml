@@ -11,7 +11,7 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
-    if: github.repository == 'yohaiai/postiz-app'
+    if: github.repository == 'mascotai/postiz-app'
     steps:
       - uses: actions/stale@v5
         with:
