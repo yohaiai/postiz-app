@@ -7,13 +7,13 @@ on:
 
 jobs:
   close-issues:
-    if: github.repository == 'gitroomhq/postiz-app'
     runs-on: ubuntu-latest
     permissions:
       issues: write
       pull-requests: write
+    if: github.repository == 'yohaiai/postiz-app'
     steps:
-      - uses: actions/stale@v9
+      - uses: actions/stale@v5
         with:
           days-before-issue-stale: 90
           days-before-issue-close: 7
