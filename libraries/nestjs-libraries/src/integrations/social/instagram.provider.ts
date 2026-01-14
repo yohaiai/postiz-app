@@ -457,6 +457,8 @@ export class InstagramProvider
     const [firstPost] = postDetails;
     console.log('in progress', id);
     const isStory = firstPost.settings.post_type === 'story';
+    const shareToFeed = firstPost.settings?.share_to_feed ?? true;
+    const shareToFeedUrlParam = !shareToFeed ? '&share_to_feed=false' : '';
     const medias = await Promise.all(
       firstPost?.media?.map(async (m) => {
         const caption =
@@ -493,7 +495,7 @@ export class InstagramProvider
         console.log(collaborators);
         const { id: photoId } = await (
           await this.fetch(
-            `https://${type}/v20.0/${id}/media?${mediaType}${isCarousel}${collaborators}&access_token=${accessToken}${caption}`,
+            `https://${type}/v20.0/${id}/media?${mediaType}${isCarousel}${collaborators}&access_token=${accessToken}${caption}${shareToFeedUrlParam}`,
             {
               method: 'POST',
             }
